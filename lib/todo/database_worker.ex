@@ -1,13 +1,13 @@
 defmodule Todo.DatabaseWorker do
   use GenServer
 
-  def start_link(db_folder, worker_id) do
+  def start_link({db_folder, worker_id}) do
     IO.puts("Starting the database worker #{worker_id}...")
     GenServer.start_link(__MODULE__, db_folder, name: via_tuple(worker_id))
   end
 
   defp via_tuple(worker_id) do
-    {:via, Todo.ProcessRegistry, {:database_worker, worker_id}}
+    {:via, :gproc, {:n, :l, {:database_worker, worker_id}}}
   end
 
   def store(worker_id, key, data) do
