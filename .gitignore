@@ -42,3 +42,4 @@ todo-*.tar
 Thumbs.db
 
 persist/
+*.iml
