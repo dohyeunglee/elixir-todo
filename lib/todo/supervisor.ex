@@ -5,7 +5,7 @@ defmodule Todo.Supervisor do
       Todo.Cache
     ]
 
-    Supervisor.init(children, strategy: :rest_for_one)
+    Supervisor.init(children, strategy: :one_for_one)
   end
 
   def start_link() do
